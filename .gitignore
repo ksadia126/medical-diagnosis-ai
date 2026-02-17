@@ -1,0 +1,18 @@
+# Virtual Environment
+.venv/
+
+# Datasets (large CSV files - don't push to GitHub)
+Datasets/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code settings
+.vscode/
+
+# Environment variables (API keys etc)
+.env
