@@ -1,0 +1,172 @@
+{% extends 'predictions/base.html' %}
+
+{% block title %}Heart Disease Prediction{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="text-center mb-4">
+            <h2 class="display-5 fw-bold">
+                <i class="fas fa-heartbeat text-danger"></i> Heart Disease Prediction
+            </h2>
+            <p class="text-muted">Enter patient parameters to assess heart disease risk</p>
+        </div>
+
+        <form method="POST" class="needs-validation" novalidate>
+            {% csrf_token %}
+            
+            <div class="row g-3">
+                <!-- Age -->
+                <div class="col-md-6">
+                    <label for="age" class="form-label">Age</label>
+                    <input type="number" class="form-control" id="age" name="age" required min="1" max="120">
+                    <div class="invalid-feedback">Please enter a valid age.</div>
+                </div>
+
+                <!-- Sex -->
+                <div class="col-md-6">
+                    <label for="sex" class="form-label">Sex</label>
+                    <select class="form-select" id="sex" name="sex" required>
+                        <option value="">Choose...</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                    <div class="invalid-feedback">Please select sex.</div>
+                </div>
+
+                <!-- Chest Pain Type -->
+                <div class="col-md-6">
+                    <label for="cp" class="form-label">Chest Pain Type</label>
+                    <select class="form-select" id="cp" name="cp" required>
+                        <option value="">Choose...</option>
+                        <option value="0">Typical Angina</option>
+                        <option value="1">Atypical Angina</option>
+                        <option value="2">Non-anginal Pain</option>
+                        <option value="3">Asymptomatic</option>
+                    </select>
+                    <div class="invalid-feedback">Please select chest pain type.</div>
+                </div>
+
+                <!-- Resting Blood Pressure -->
+                <div class="col-md-6">
+                    <label for="trestbps" class="form-label">Resting Blood Pressure (mm Hg)</label>
+                    <input type="number" class="form-control" id="trestbps" name="trestbps" required min="80" max="200">
+                    <div class="invalid-feedback">Please enter resting BP.</div>
+                </div>
+
+                <!-- Cholesterol -->
+                <div class="col-md-6">
+                    <label for="chol" class="form-label">Serum Cholesterol (mg/dl)</label>
+                    <input type="number" class="form-control" id="chol" name="chol" required min="100" max="600">
+                    <div class="invalid-feedback">Please enter cholesterol level.</div>
+                </div>
+
+                <!-- Fasting Blood Sugar -->
+                <div class="col-md-6">
+                    <label for="fbs" class="form-label">Fasting Blood Sugar > 120 mg/dl</label>
+                    <select class="form-select" id="fbs" name="fbs" required>
+                        <option value="">Choose...</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <div class="invalid-feedback">Please select FBS status.</div>
+                </div>
+
+                <!-- Resting ECG -->
+                <div class="col-md-6">
+                    <label for="restecg" class="form-label">Resting ECG Results</label>
+                    <select class="form-select" id="restecg" name="restecg" required>
+                        <option value="">Choose...</option>
+                        <option value="0">Normal</option>
+                        <option value="1">ST-T Wave Abnormality</option>
+                        <option value="2">Left Ventricular Hypertrophy</option>
+                    </select>
+                    <div class="invalid-feedback">Please select ECG result.</div>
+                </div>
+
+                <!-- Max Heart Rate -->
+                <div class="col-md-6">
+                    <label for="thalach" class="form-label">Maximum Heart Rate Achieved</label>
+                    <input type="number" class="form-control" id="thalach" name="thalach" required min="60" max="220">
+                    <div class="invalid-feedback">Please enter max heart rate.</div>
+                </div>
+
+                <!-- Exercise Induced Angina -->
+                <div class="col-md-6">
+                    <label for="exang" class="form-label">Exercise Induced Angina</label>
+                    <select class="form-select" id="exang" name="exang" required>
+                        <option value="">Choose...</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <div class="invalid-feedback">Please select angina status.</div>
+                </div>
+
+                <!-- ST Depression -->
+                <div class="col-md-6">
+                    <label for="oldpeak" class="form-label">ST Depression (oldpeak)</label>
+                    <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" required min="0" max="10">
+                    <div class="invalid-feedback">Please enter ST depression value.</div>
+                </div>
+
+                <!-- Slope -->
+                <div class="col-md-6">
+                    <label for="slope" class="form-label">Slope of Peak Exercise ST Segment</label>
+                    <select class="form-select" id="slope" name="slope" required>
+                        <option value="">Choose...</option>
+                        <option value="0">Upsloping</option>
+                        <option value="1">Flat</option>
+                        <option value="2">Downsloping</option>
+                    </select>
+                    <div class="invalid-feedback">Please select slope type.</div>
+                </div>
+
+                <!-- Number of Major Vessels -->
+                <div class="col-md-6">
+                    <label for="ca" class="form-label">Number of Major Vessels (0-3)</label>
+                    <input type="number" class="form-control" id="ca" name="ca" required min="0" max="3">
+                    <div class="invalid-feedback">Please enter number of vessels (0-3).</div>
+                </div>
+
+                <!-- Thalassemia -->
+                <div class="col-md-6">
+                    <label for="thal" class="form-label">Thalassemia</label>
+                    <select class="form-select" id="thal" name="thal" required>
+                        <option value="">Choose...</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Fixed Defect</option>
+                        <option value="3">Reversible Defect</option>
+                    </select>
+                    <div class="invalid-feedback">Please select thalassemia type.</div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-predict btn-primary btn-lg">
+                    <i class="fas fa-brain me-2"></i> Predict Heart Disease
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Form validation
+(function() {
+    'use strict';
+    var forms = document.querySelectorAll('.needs-validation');
+    Array.prototype.slice.call(forms).forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
+</script>
+{% endblock %}

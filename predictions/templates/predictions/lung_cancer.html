@@ -1,0 +1,146 @@
+{% extends 'predictions/base.html' %}
+
+{% block title %}Lung Cancer Prediction{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="text-center mb-4">
+            <h2 class="display-5 fw-bold">
+                <i class="fas fa-lungs text-info"></i> Lung Cancer Prediction
+            </h2>
+            <p class="text-muted">Enter patient symptoms and lifestyle factors</p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" name="gender" required>
+                        <option value="">Choose...</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="age" class="form-label">Age</label>
+                    <input type="number" class="form-control" name="age" required min="1" max="120">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="smoking" class="form-label">Smoking</label>
+                    <select class="form-select" name="smoking" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="yellow_fingers" class="form-label">Yellow Fingers</label>
+                    <select class="form-select" name="yellow_fingers" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="anxiety" class="form-label">Anxiety</label>
+                    <select class="form-select" name="anxiety" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="peer_pressure" class="form-label">Peer Pressure</label>
+                    <select class="form-select" name="peer_pressure" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="chronic_disease" class="form-label">Chronic Disease</label>
+                    <select class="form-select" name="chronic_disease" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="fatigue" class="form-label">Fatigue</label>
+                    <select class="form-select" name="fatigue" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="allergy" class="form-label">Allergy</label>
+                    <select class="form-select" name="allergy" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="wheezing" class="form-label">Wheezing</label>
+                    <select class="form-select" name="wheezing" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="alcohol" class="form-label">Alcohol Consumption</label>
+                    <select class="form-select" name="alcohol" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="coughing" class="form-label">Coughing</label>
+                    <select class="form-select" name="coughing" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="shortness_of_breath" class="form-label">Shortness of Breath</label>
+                    <select class="form-select" name="shortness_of_breath" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="swallowing_difficulty" class="form-label">Swallowing Difficulty</label>
+                    <select class="form-select" name="swallowing_difficulty" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="chest_pain" class="form-label">Chest Pain</label>
+                    <select class="form-select" name="chest_pain" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-predict btn-primary btn-lg">
+                    <i class="fas fa-brain me-2"></i> Predict Lung Cancer Risk
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

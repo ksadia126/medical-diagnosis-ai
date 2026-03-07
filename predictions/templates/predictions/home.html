@@ -1,0 +1,54 @@
+{% extends 'predictions/base.html' %}
+
+{% block title %}Home - Medical Diagnosis AI{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">
+        <i class="fas fa-brain text-primary"></i> AI-Powered Medical Diagnosis
+    </h1>
+    <p class="lead text-muted">
+        Get instant disease predictions using advanced machine learning algorithms
+    </p>
+</div>
+
+<div class="row g-4">
+    {% for disease in diseases %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card disease-card h-100">
+            <div class="card-body text-center">
+                <div class="disease-icon">{{ disease.icon }}</div>
+                <h5 class="card-title fw-bold">{{ disease.name }}</h5>
+                <p class="card-text text-muted">{{ disease.description }}</p>
+                <a href="{% url disease.url %}" class="btn btn-predict btn-primary">
+                    Start Prediction <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="mt-5 p-4 bg-light rounded">
+    <h4 class="mb-3"><i class="fas fa-info-circle text-info"></i> How It Works</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <h6><i class="fas fa-file-medical text-primary"></i> 1. Enter Data</h6>
+            <p class="text-muted">Provide medical parameters and symptoms</p>
+        </div>
+        <div class="col-md-4">
+            <h6><i class="fas fa-microchip text-success"></i> 2. AI Analysis</h6>
+            <p class="text-muted">Our ML models process your data</p>
+        </div>
+        <div class="col-md-4">
+            <h6><i class="fas fa-chart-line text-danger"></i> 3. Get Results</h6>
+            <p class="text-muted">Receive instant prediction results</p>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-warning mt-4" role="alert">
+    <i class="fas fa-exclamation-triangle"></i> 
+    <strong>Disclaimer:</strong> This tool is for educational purposes only and should not replace professional medical advice.
+</div>
+{% endblock %}

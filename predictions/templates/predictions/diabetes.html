@@ -1,0 +1,105 @@
+{% extends 'predictions/base.html' %}
+
+{% block title %}Diabetes Prediction{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="text-center mb-4">
+            <h2 class="display-5 fw-bold">
+                <i class="fas fa-tint text-danger"></i> Diabetes Prediction
+            </h2>
+            <p class="text-muted">Enter health parameters to assess diabetes risk</p>
+        </div>
+
+        <form method="POST" class="needs-validation" novalidate>
+            {% csrf_token %}
+            
+            <div class="row g-3">
+                <!-- Pregnancies -->
+                <div class="col-md-6">
+                    <label for="pregnancies" class="form-label">Number of Pregnancies</label>
+                    <input type="number" class="form-control" name="pregnancies" required min="0" max="20">
+                    <div class="invalid-feedback">Please enter number of pregnancies.</div>
+                </div>
+
+                <!-- Glucose -->
+                <div class="col-md-6">
+                    <label for="glucose" class="form-label">Glucose Level (mg/dL)</label>
+                    <input type="number" class="form-control" name="glucose" required min="0" max="300">
+                    <div class="invalid-feedback">Please enter glucose level.</div>
+                </div>
+
+                <!-- Blood Pressure -->
+                <div class="col-md-6">
+                    <label for="blood_pressure" class="form-label">Blood Pressure (mm Hg)</label>
+                    <input type="number" class="form-control" name="blood_pressure" required min="0" max="200">
+                    <div class="invalid-feedback">Please enter blood pressure.</div>
+                </div>
+
+                <!-- Skin Thickness -->
+                <div class="col-md-6">
+                    <label for="skin_thickness" class="form-label">Skin Thickness (mm)</label>
+                    <input type="number" class="form-control" name="skin_thickness" required min="0" max="100">
+                    <div class="invalid-feedback">Please enter skin thickness.</div>
+                </div>
+
+                <!-- Insulin -->
+                <div class="col-md-6">
+                    <label for="insulin" class="form-label">Insulin Level (μU/mL)</label>
+                    <input type="number" class="form-control" name="insulin" required min="0" max="900">
+                    <div class="invalid-feedback">Please enter insulin level.</div>
+                </div>
+
+                <!-- BMI -->
+                <div class="col-md-6">
+                    <label for="bmi" class="form-label">Body Mass Index (BMI)</label>
+                    <input type="number" step="0.1" class="form-control" name="bmi" required min="0" max="70">
+                    <div class="invalid-feedback">Please enter BMI.</div>
+                </div>
+
+                <!-- Diabetes Pedigree Function -->
+                <div class="col-md-6">
+                    <label for="dpf" class="form-label">Diabetes Pedigree Function</label>
+                    <input type="number" step="0.001" class="form-control" name="dpf" required min="0" max="3">
+                    <div class="form-text">Family history indicator (0.078 - 2.42)</div>
+                    <div class="invalid-feedback">Please enter diabetes pedigree function.</div>
+                </div>
+
+                <!-- Age -->
+                <div class="col-md-6">
+                    <label for="age" class="form-label">Age (years)</label>
+                    <input type="number" class="form-control" name="age" required min="1" max="120">
+                    <div class="invalid-feedback">Please enter age.</div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-predict btn-primary btn-lg">
+                    <i class="fas fa-brain me-2"></i> Predict Diabetes Risk
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Form validation
+(function() {
+    'use strict';
+    var forms = document.querySelectorAll('.needs-validation');
+    Array.prototype.slice.call(forms).forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
+</script>
+{% endblock %}

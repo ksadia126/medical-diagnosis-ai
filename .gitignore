@@ -1,18 +1,33 @@
-# Virtual Environment
-.venv/
-
 # Datasets (large CSV files - don't push to GitHub)
 Datasets/
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
 
-# Python cache
-__pycache__/
-*.pyc
-
 # VS Code settings
 .vscode/
 
 # Environment variables (API keys etc)
 .env
+*.sqlite3
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+/staticfiles/
+
+
+# OS
+.DS_Store
+Thumbs.db

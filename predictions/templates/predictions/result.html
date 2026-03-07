@@ -1,0 +1,70 @@
+{% extends 'predictions/base.html' %}
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="text-center mb-4">
+            <h2 class="display-5 fw-bold">{{ disease }} Prediction Result</h2>
+        </div>
+
+        <div class="result-{{ result_class }} mb-4">
+            <h1 class="display-3 mb-3">{{ result }}</h1>
+            <p class="fs-5">
+                {% if result_class == 'success' %}
+                    <i class="fas fa-check-circle fa-3x mb-3"></i>
+                {% else %}
+                    <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                {% endif %}
+            </p>
+            <p class="mb-0">Prediction Value: {{ prediction_value }}</p>
+        </div>
+
+        {% if result_class == 'danger' %}
+        <div class="alert alert-warning" role="alert">
+            <h5 class="alert-heading">
+                <i class="fas fa-info-circle"></i> Important Information
+            </h5>
+            <p>This prediction indicates a potential risk. Please consider the following:</p>
+            <ul>
+                <li>Consult with a qualified healthcare professional immediately</li>
+                <li>This is a screening tool and not a definitive diagnosis</li>
+                <li>Follow up with appropriate medical tests and examinations</li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+            <h5 class="alert-heading">
+                <i class="fas fa-thumbs-up"></i> Good News!
+            </h5>
+            <p>The prediction indicates low risk. However:</p>
+            <ul>
+                <li>Maintain regular health check-ups</li>
+                <li>Continue healthy lifestyle practices</li>
+                <li>Monitor any symptoms and consult a doctor if needed</li>
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="text-center mt-4">
+            <a href="{% url 'predictions:home' %}" class="btn btn-outline-primary btn-lg me-2">
+                <i class="fas fa-home me-2"></i> Back to Home
+            </a>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary btn-lg">
+                <i class="fas fa-redo me-2"></i> Try Again
+            </a>
+        </div>
+
+        <div class="mt-5 p-4 bg-light rounded">
+            <h5><i class="fas fa-exclamation-circle text-warning"></i> Medical Disclaimer</h5>
+            <p class="text-muted mb-0">
+                This AI prediction tool is designed for educational and informational purposes only. 
+                It should not be used as a substitute for professional medical advice, diagnosis, or treatment. 
+                Always seek the advice of your physician or other qualified health provider with any questions 
+                you may have regarding a medical condition.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
